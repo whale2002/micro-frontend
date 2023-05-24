@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" />
+    <title>Document</title>
+  </head>
+
+  <body>
+    主应用 - 基座
+    <div id="root"></div>
+
+    <script type="systemjs-importmap">
+      {
+        "imports": {
+          "react-dom": "https://cdn.bootcdn.net/ajax/libs/react-dom/18.2.0/umd/react-dom.development.js",
+          "react": "https://cdn.bootcdn.net/ajax/libs/react/18.2.0/umd/react.development.js"
+        }
+      }
+    </script>
+
+    <script>
+      class SystemJS {
+        import() {}
+
+        register() {}
+      }
+
+      const System = new SystemJS();
+
+      System.import("./index.js");
+    </script>
+  </body>
+</html>
