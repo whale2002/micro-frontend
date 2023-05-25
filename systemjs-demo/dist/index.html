@@ -103,7 +103,7 @@
                     registeration.map((dep, i) => {
                       return load(dep).then(() => {
                         const property = getLastGlobalProperty();
-                        // 比如这里的property可能是React或ReactDOm
+                        // 比如这里的property可能是React或ReactDOM
                         // 加载完毕后，会在window上增添属性 window.React window.ReactDOM
                         // 加载完毕依赖以后，设置资源
                         setters[i](property);
