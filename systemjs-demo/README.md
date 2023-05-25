@@ -8,6 +8,9 @@ system 模块规范 umd amd esModule commonjs
 
 ## 实现 systemjs
 
+- 本质就是先加载依赖列表，再去加载真正的逻辑
+- 内部通过 script 标本加载资源，给 window 快照保存先后状态
+
 ```js
 <script type="systemjs-importmap">
   {
