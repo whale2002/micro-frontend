@@ -39,19 +39,20 @@
         return new Promise((resolve, reject) => {
           const script = document.createElement("script");
           script.async = true;
-          script.src = newMapUrl[id] | id;
+          script.src = newMapUrl[id] || id;
           document.head.appendChild(script);
 
           // 此时会执行加载的代码
           script.addEventListener("load", () => {
             let _lastRefister = lastRegister;
-            lastRegister = null;
+            lastRegister = undefined;
 
             resolve(_lastRefister);
           });
         });
       }
 
+      // 快照
       let set = new Set(); // 1）先保存window上的属性
 
       function saveGlobalProperty() {
@@ -86,12 +87,14 @@
               }
             })
             .then((id) => {
+              let execute;
               // 获取到具体的资源路径
               return load(id)
                 .then((register) => {
                   // execute是真正的渲染逻辑
                   // setters 是用来保存加载后的资源，加载资源调用setters
-                  const { setters, execute } = register[1](() => {});
+                  const { setters, execute: exe } = register[1](() => {});
+                  execute = exe;
 
                   return [register[0], setters];
                 })
